@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+
 <html lang="en">
 
 
@@ -8,124 +10,131 @@
 
 
 
-        <title>Pickle Predictor</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-        
+        <title>Julianna Harwood</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css" />
         <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap" rel="stylesheet" />
-        <link rel="icon" type="image/x-icon" href="static/favicon.ico">
+        <link rel="icon" type="image/png" rel="noopener" target="_blank" href="{{ url_for('static', filename='favicon.ico') }}">
 
     </head>
 
 
     <body>
 
-        <h1>Who will win?</h1>
-
-        <p id="sub-heading">Make selections below and see who will win!</p>
-
-        <div class="user-inputs">
-
-            <div class="player">
-                <img src="static/giraffe.png" class="light-up">
-                <div class="paddles">
-                  <img src="static/gay.jpeg" class="light-up">
-                  <img src="static/straight.webp" class="light-up">
-                </div>
-              </div>
+        <h1>Julianna Harwood</h1>
+        
+        <div id="welcome">
+        <p>Welcome! Thank you for checking out my work samples.</p>
+        </div>
+        
+        <div id="buttons">
             
-              <!-- Second main image with two smaller images below -->
-              <div class="player">
-                <img src="static/giraffe.png" class="light-up">
-                <div class="paddles">
-                  <img src="static/gay.jpeg" class="light-up">
-                  <img src="static/straight.webp" class="light-up">
-                </div>
-              </div>
-            
-            <div class="location-grid">
-                <img class="light-up" src="static/cienaga.png" alt="La Cienaga Tennis Club">
-                <img class="light-up" src="static/plummer.jpeg" alt="Plummer Park">
-                <img class="light-up" src="static/roxbury.jpeg" alt="Roxbury Tennis Club">
-                <img class="light-up" src="static/weho.jpeg" alt="West Hollywood Rec Center">
-            </div>
-            
-            <div>
-                <input type="time" id="court-start-time" name="court-start-time" min="00:00" max="24:00"/>
-            </div>
+            <a id="code_button" type="button" class="fill" href="#code-modal">w/ code</a>
 
-            <div class="slider">
-                <input type="range" id="game-session-num" min="1" max="5" value="1" onchange="updateTextInput(this.value);">
-                <div id="game-session-num-input"></div>
-            </div>
-
-            <div>
-                <select id="game-length">
-                    <option value="Short">Short</option>
-                    <option value="Medium">Medium</option>
-                    <option value="Long">Long</option>
-                </select>
-            </div>
-
-            <div>
-                <button onclick="sendValue()">Predict Winner</button>
-            </div>
+            <a id="no_code_button" type="button" class="fill" href="#no-code-modal">w/o code</a>
 
         </div>
-    
-        <p id="data"></p>
 
-        <script>
-            // Image opacity change
-            var images = document.querySelectorAll(".light-up");
+        <div class="links-container">
+            <a id="resume" href="{{ url_for('static', filename='content/Julianna Harwood Resume.pdf') }}" target="_blank">Resume</a>
+            <a id="linkedin" href="https://www.linkedin.com/in/juliannaharwood/"target="_blank">LinkedIn</a>
+        </div>
 
-            // Add click event listener to each image
-            images.forEach(function(image) {
-                image.addEventListener("click", function() {
-                    // Check current opacity
-                    var currentOpacity = parseFloat(image.style.opacity)
+        <img id="comic" src="{{ url_for('static', filename='images/comic.png') }}">
+
+        <form action="/authenticate" method="post">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password">
+            <input type="submit" value="Submit">
+        </form>
+        
+        <div id="code-modal" class="modal">
+            <div class="modal__content">
                 
-                    // Toggle opacity (change it to 0.5 if it's currently 1, otherwise change it to 1)
-                    image.style.opacity = currentOpacity === 1 ? 0.5 : 1;
-                });
-            });
-            
-            // slider output
-            var slider = document.getElementById("game-session-num");
-            var output = document.getElementById("game-session-num-input");
-            output.innerHTML = slider.value; // Display the default slider value
+                <button id="delta_method" type="button" class="slide">
+                    <div>AB Testing with the Delta Method for Relative Difference</div>
+                    <i class="icon-arrow-right"></i>
+                </button>
 
-            // Update the current slider value (each time you drag the slider handle)
-            slider.oninput = function() {
-            output.innerHTML = this.value;
+                <button id="box_office" type="button" class="slide">
+                    <div>Predicting Box Office Revenue</div>
+                    <i class="icon-arrow-right"></i>
+                </button>
+
+                <button id="email_conversion" type="button" class="slide">
+                    <div>Analysis of Marketing Email Conversions</div>
+                    <i class="icon-arrow-right"></i>
+                </button>
+
+                <button id="cars" type="button" class="slide">
+                    <div>Car Recognition and Classification w/ Tensorflow</div>
+                    <i class="icon-arrow-right"></i>
+                </button>
+        
+                <a href="#" class="modal__close">&times;</a>
+            </div>
+        </div>
+
+        <div id="no-code-modal" class="modal">
+            <div class="modal__content">
+                
+                <button id="cuped" type="button" class="slide">
+                    <div>Using CUPED to Reduce Experiment Runtime</div>
+                    <i class="icon-arrow-right"></i>
+                </button>
+
+                <button id="education" type="button" class="slide">
+                    <div>How do we learn physics?</div>
+                    <i class="icon-arrow-right"></i>
+                </button>
+
+                <button id="traffic" type="button" class="slide">
+                    <div>Analysis of Traffic Stops by Race & Gender of Driver</div>
+                    <i class="icon-arrow-right"></i>
+                </button>
+        
+                <a href="#" class="modal__close">&times;</a>
+            </div>
+        </div>
+
+        <!-- Adding our JavaScript in the script tag -->
+        <script>
+            document.getElementById("delta_method").onclick = function () {
+                window.open("/static/content/code/delta_method.html", "_blank");
+                // location.href = "content/code/delta_method.html";
             };
 
-            function sendValue() {
-                var dropdown = document.getElementById("dropdown");
-                var selectedValue = dropdown.options[dropdown.selectedIndex].value;
-                fetch('/show_data', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ value: selectedValue })
-                })
-                .then(response => {
-                    if (response.ok) {
-                        return response.text();
-                    }
-                    throw new Error('Network response was not ok.');
-                })
-                .then(data => {
-                    var result = data;
+            document.getElementById("box_office").onclick = function () {
+                window.open("/static/content/code/box_office_revenue_prediction.html", "_blank");
+                // location.href = "content/code/box_office_revenue_prediction.html";
+            };
 
-                    document.getElementById("data").textContent = result;
-                })
-                .catch(error => {
-                    console.error('There was a problem with your fetch operation:', error);
-                });
-            }
+            document.getElementById("email_conversion").onclick = function () {
+                window.open("/static/content/code/marketing_email_analysis.html", "_blank");
+                // location.href = "content/code/marketing_email_analysis.html";
+            };
+
+            document.getElementById("cars").onclick = function () {
+                window.open("/static/content/code/cars.html", "_blank");
+                // location.href = "content/code/cars.html";
+            };
+
+            document.getElementById("cuped").onclick = function () {
+                window.open("https://medium.com/growth-book/understanding-how-cuped-in-growthbook-reduces-experiment-runtimes-at-the-los-angeles-times-79ba7c288d71", "_blank");
+            };
+
+            document.getElementById("education").onclick = function () {
+                window.open("/static/content/no_code/Education_Research.png", "_blank");
+                // location.href = "content/no_code/Education_Research.png";
+            };
+
+            document.getElementById("traffic").onclick = function () {
+                window.open("/static/content/no_code/traffic_stops.png", "_blank");
+                // location.href = "content/no_code/traffic_stops.png";
+            };
+
         </script>
+
 
     </body>
 
